@@ -69,7 +69,7 @@ function App() {
   const [injectedProvider, setInjectedProvider] = useState();
 
   const [chainList, setChainList] = useState([]);
-
+  const [data, setData] = useState([]);
   useEffect(() => {
     const space = 'cre8r.eth';
 const strategies = [
@@ -158,6 +158,9 @@ snapshot.utils.getScores(
   blockNumber
 ).then(scores => {
   console.log('Scores', scores);
+  setData(scores)
+  console.log(scores &&  scores.filter((val, i) => val[address] != null)[0] &&scores.filter((val, i) => val[address] != null)[0] [address]  )
+  console.log(address)
 });
  // console.log('addresses:',addresses.map(address=>address.toString(16)))
     const getChainList = async () => {
@@ -281,7 +284,7 @@ snapshot.utils.getScores(
           <a href="https://github.com/austintgriffith/scaffold-eth/tree/signatorio" target="_blank">
             <GithubOutlined />
           </a>
-          <span>Built with 💙</span>
+          <span>Built with 💙 {data &&  data.filter((val, i) => val[address] != null)[0] &&data.filter((val, i) => val[address] != null)[0] [address]}</span>
           <a href="https://buidlguidl.com/" target="_blank">
             🏰 BuidlGuidl{" "}
           </a>
