@@ -281,12 +281,12 @@ snapshot.utils.getScores(
       {/* <ThemeSwitch /> */}
       <Footer style={{ textAlign: "center", fontSize: "16px" }}>
         <Space>
-          <a href="https://github.com/austintgriffith/scaffold-eth/tree/signatorio" target="_blank">
+          <a href="https://github.com/CRE8RDAO/bb" target="_blank">
             <GithubOutlined />
           </a>
-          <span>Built with 💙 {data &&  data.filter((val, i) => val[address] != null)[0] &&data.filter((val, i) => val[address] != null)[0] [address]}</span>
-          <a href="https://buidlguidl.com/" target="_blank">
-            🏰 BuidlGuidl{" "}
+          <span>Your CRE8R Voting Power {data &&  data.filter((val, i) => val[address] != null)[0] &&data.filter((val, i) => val[address] != null)[0] [address]}</span>
+          <a href="https://cre8r.vip/boosted-bribes/" target="_blank">
+            🧱 Boosted Bribes™ {" "}
           </a>
         </Space>
       </Footer>
