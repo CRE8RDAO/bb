@@ -13,7 +13,12 @@ import { INFURA_ID, NETWORKS } from "./constants";
 import signatorLogo from "./images/sig-logo.png";
 import Signator from "./Signator";
 import SignatorViewer from "./SignatorViewer";
+import snapshot from '@snapshot-labs/snapshot.js';
+import addresses from "./addresses";
 
+
+const hub = 'https://hub.snapshot.org'; // or https://testnet.snapshot.org for testnet
+const client = new snapshot.Client712(hub);
 const { Footer } = Layout;
 /*
     Welcome to Signatorio !
@@ -66,6 +71,95 @@ function App() {
   const [chainList, setChainList] = useState([]);
 
   useEffect(() => {
+    const space = 'cre8r.eth';
+const strategies = [
+  {
+    "name": "masterchef-pool-balance",
+    "network": "250",
+    "params": {
+      "pid": "39",
+      "symbol": "BEETSLP -> SLP",
+      "weight": 202,
+      "tokenIndex": null,
+      "chefAddress": "0x8166994d9ebBe5829EC86Bd81258149B87faCfd3",
+      "uniPairAddress": null,
+      "weightDecimals": 3
+    }
+  },
+  {
+    "name": "erc20-balance-of-weighted",
+    "network": "250",
+    "params": {
+      "symbol": "reaper",
+      "weight": 0.2021571004,
+      "address": "0xd70257272b108677B017A942cA80fD2b8Fc9251A",
+      "decimals": 18
+    }
+  },
+  {
+    "name": "erc20-balance-of-weighted",
+    "network": "250",
+    "params": {
+      "symbol": "moo",
+      "address": "0x503FF2102D51ec816C693017d26E31df666Cadf0",
+      "decimals": 18,
+      "weight": 2.950783334
+    }
+  },
+  {
+    "name": "erc20-balance-of-weighted",
+    "network": "250",
+    "params": {
+      "symbol": "beluga",
+      "weight": 1,
+      "address": "0x6D931508d47f1D858c209C5296E9afC091a2Ddff",
+      "decimals": 18
+    }
+  },
+  {
+    "name": "contract-call",
+    "network": "250",
+    "params": {
+      "symbol": "spiritLPCRE8R",
+      "address": "0xDcD990038d9CBe98B84a6aD9dBc880e3d4b06599",
+      "decimals": 18,
+      "methodABI": {
+        "name": "balanceOf",
+        "type": "function",
+        "inputs": [
+          {
+            "name": "account",
+            "type": "address",
+            "internalType": "address"
+          }
+        ],
+        "outputs": [
+          {
+            "name": "",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ],
+        "stateMutability": "view"
+      }
+    }
+  }
+];
+const network = '250';
+const voters = addresses
+
+const blockNumber = 37320000;
+
+snapshot.utils.getScores(
+  space,
+  strategies,
+  network,
+  voters,
+  blockNumber
+).then(scores => {
+  console.log('Scores', scores);
+});
+ // console.log('addresses:',addresses.map(address=>address.toString(16)))
     const getChainList = async () => {
       try {
         const rawChainList = await fetch("https://chainid.network/chains.json");
